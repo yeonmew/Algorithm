@@ -1,0 +1,48 @@
+import time
+import random
+
+def quick_sort(arr, start, end):
+    if start >= end: 
+        return 
+
+    pivot = start # 피벗은 첫번째 원소
+    left, right = start + 1, end
+    
+    while left <= right:
+        # 피벗보다 작은 데이터를 찾을 때까지 반복
+        while left <= end and arr[left] <= arr[pivot]:
+            left += 1
+        # 피벗보다 큰 데이터를 찾을 때까지 반복
+        while right > start and arr[right] >= arr[pivot]:
+            right -= 1
+        if left > right: # 엇갈린 경우
+            arr[right], arr[pivot] = arr[pivot], arr[right]
+        else: # 엇갈리지 않은 경우
+            arr[right], arr[left] = arr[left], arr[right]
+    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
+    quick_sort(arr, start, right - 1)
+    quick_sort(arr, right + 1, end)
+
+    #  1) 1~1000만까지 순서대로 숫자가 저장된 배열
+arr = list(range(1, 1000)) #1~1000만까지 arr에 저장
+
+time1 = time.time()
+quick_sort(arr, 0, len(arr) - 1)
+print('1~1000만까지 순서대로 숫자가 저장된 배열 시간 측정  =   ', time.time() - time1)
+
+#  2) 1000만~1까지 순서대로 숫자가 저장된 배열
+arr = [] #배열 초기화 후 다시 진행
+arr = list(range(1000,1,-1)) #1000만~1까지 arr에 저장
+
+time2 = time.time()
+quick_sort(arr, 0, len(arr) - 1)
+print('1000만~1까지 순서대로 숫자가 저장된 배열 시간 측정  =   ', time.time() - time2)
+
+#  3) 균등하게 섞여있는 배열(크기는 1000만)
+arr = [] #배열 초기화 후 다시 진행
+for i in range(1, 1000):
+    arr.append(random.randint(1,1000))
+
+time3 = time.time()
+quick_sort(arr, 0, len(arr) - 1)
+print('균등하게 섞여있는 배열(크기는 1000만) 시간 측정  =   ', time.time() - time3)
