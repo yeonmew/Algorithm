@@ -1,16 +1,15 @@
 # 프로그램명: 게임 개발
 # 작성자: yeonmew
-# 작성일: 2023.02.13
+# 작성일: 2023.02.13 
 
 from timeit import default_timer as timer
 from datetime import timedelta
-
 
 N,M = map(int, input().split()) # N x M의 맵
 
 c = [[0] * M for _ in range(N)] # 방문 위치 저장을 위한 맵 생성
 
-x, y, direction = map(int,input().split()) # 현재 캐릭터의 x, y좌표와 방향 입력
+x, y, direction = map(int,input().split()) # 현재 캐릭터의 x, y좌표와 방향 입력 
 c[x][y] = 1 # 현 좌표 방문 처리
 
 arr = []
@@ -55,6 +54,7 @@ while True:
             y = cy
         else: # 뒤로 이동할 수 없는 경우
             break
+        turn_count = 0
 end_time = timer()
 
 print(count, timedelta(seconds= end_time - start_time))
