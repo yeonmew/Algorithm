@@ -15,6 +15,6 @@ for _ in range(int(input())): #X 값
             if len(max_heap) == 0 or min_heap[0] < max_heap[0]:
                 print(heapq.heappop(min_heap))
             else:
-                print(heapq.heappop(max_heap))
+                print(-heapq.heappop(max_heap))
         else:
             print(-heapq.heappop(max_heap) if len(max_heap) else 0)
